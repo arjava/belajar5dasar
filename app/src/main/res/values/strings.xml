@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Belajar 5 Dasar</string>
+    <string name="title_activity_alphabet">Alphabet</string>
+    <string name="title_activity_angka">Angka</string>
+    <string name="title_activity_buah">Buah</string>
+    <string name="title_activity_warna">Warna</string>
+    <string name="title_activity_hijaiyah">Hijaiyah</string>
+    <string name="action_pemesanan">Pesan CD</string>
+    <string name="kurang">Uangnya Kurang Brooo . . .</string>
+    <string name="alphabet">Belajar Huruf Alphabhet</string>
+    <string name="angka">Belajar Angka</string>
+    <string name="buah">Belajar Mengenal Buah</string>
+    <string name="hijaiyah">Belajar Huruf Hijaiyah</string>
+    <string name="warna">Belajar Mengenal Warna</string>
+</resources>
