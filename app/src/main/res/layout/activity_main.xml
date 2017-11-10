@@ -103,4 +103,6 @@
 
     </LinearLayout>
 
+    <include layout="@layout/fab_sub_menu"/>
+
 </RelativeLayout>

@@ -2,6 +2,7 @@ package com.arjava.limadasaran;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,11 +10,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button angka, alphabet, buah, hijaiyah, warna;
+    private boolean fabExpanded = false;
+    private FloatingActionButton fabMenus;
+    private LinearLayout linearLayoutAbout;
+    private LinearLayout linearLayoutRate;
+    private LinearLayout linearLayoutMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +33,21 @@ public class MainActivity extends AppCompatActivity {
         hijaiyah = (Button) findViewById(R.id.btHijaiyah);
         warna = (Button) findViewById(R.id.btWarna);
 
+        fabMenus = (FloatingActionButton) findViewById(R.id.fabMenus);
+        linearLayoutAbout = (LinearLayout) findViewById(R.id.lineAbout);
+
         getSupportActionBar().setTitle(null);
+
+        fabMenus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (fabExpanded == true) {
+                    closeMenuFab();
+                } else {
+                    openMenuFab();
+                }
+            }
+        });
 
         angka.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +83,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Warna.class));
             }
         });
+
+        closeMenuFab();
+    }
+
+    private void openMenuFab() {
+        linearLayoutAbout.setVisibility(View.VISIBLE);
+        fabMenus.setImageResource(R.drawable.angka_1);
+        fabExpanded = true;
+    }
+
+    private void closeMenuFab() {
+        linearLayoutAbout.setVisibility(View.INVISIBLE);
+        fabMenus.setImageResource(R.drawable.alif);
+        fabExpanded = false;
     }
 
     @Override
@@ -108,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //
-                        finish();
+                        dialogInterface.cancel();
                     }
                 });
         AlertDialog alert = builder.create();

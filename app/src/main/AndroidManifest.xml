@@ -25,9 +25,9 @@
             android:label="@string/title_activity_alphabet"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <!--<meta-data
+            <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.arjava.limadasaran.MainActivity"--> />
+                android:value="com.arjava.limadasaran.MainActivity" />
         </activity>
         <activity
             android:name=".Angka"
