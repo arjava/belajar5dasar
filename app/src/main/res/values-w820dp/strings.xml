@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nanas">Nanas</string>
+    <string name="durian">Durian</string>
+    <string name="strawberry">Strawberry</string>
+    <string name="jambu_air">Jambu Air</string>
+    <string name="semangka">Semangka</string>
+    <string name="ke_menu">Kembali ke Menu</string>
+    <string name="ulangi_game">Main Lagi</string>
+    <string name="keluar">Yakin ingin membatalkan quiz ?</string>
+    <string name="batal">Batalkan</string>
+</resources>

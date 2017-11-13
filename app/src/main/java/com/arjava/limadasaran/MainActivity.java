@@ -2,25 +2,23 @@ package com.arjava.limadasaran;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button angka, alphabet, buah, hijaiyah, warna;
     private boolean fabExpanded = false;
-    private FloatingActionButton fabMenus;
-    private LinearLayout linearLayoutAbout;
-    private LinearLayout linearLayoutRate;
-    private LinearLayout linearLayoutMore;
+    private FloatingActionButton fabMenus, fabAbout, fabRate, fabMoreApp, fabQuiz;
+    private LinearLayout linearLayoutAbout, linearLayoutRate, linearLayoutMoreApp, linearLayoutQuiz;
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private String APP_NAME = "com.arjava.limadasaran";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +32,14 @@ public class MainActivity extends AppCompatActivity {
         warna = (Button) findViewById(R.id.btWarna);
 
         fabMenus = (FloatingActionButton) findViewById(R.id.fabMenus);
+        fabAbout = (FloatingActionButton) findViewById(R.id.fabAbout);
+        fabRate = (FloatingActionButton) findViewById(R.id.fabRate);
+        fabMoreApp = (FloatingActionButton) findViewById(R.id.fabMoreApp);
+        fabQuiz = (FloatingActionButton) findViewById(R.id.fabQuiz);
         linearLayoutAbout = (LinearLayout) findViewById(R.id.lineAbout);
+        linearLayoutRate = (LinearLayout) findViewById(R.id.lineRate);
+        linearLayoutMoreApp = (LinearLayout) findViewById(R.id.lineMoreApp);
+        linearLayoutQuiz = (LinearLayout) findViewById(R.id.lineLayoutQuiz);
 
         getSupportActionBar().setTitle(null);
 
@@ -46,6 +51,55 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     openMenuFab();
                 }
+            }
+        });
+
+        //penanganan layout fab & cardview about
+        linearLayoutAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, About.class));
+            }
+        });
+
+        //penanganan layout fab & cardview rate
+        linearLayoutRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Jika anda merasa terbantu dengan "+ getResources().getString(R.string.app_name)+" mohon beri rating.")
+                        .setCancelable(true)
+                        .setPositiveButton("Beri Rating", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //do things
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+ APP_NAME)));
+                            }
+                        })
+                        .setNegativeButton("Kembali", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //
+                                dialogInterface.cancel();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
+
+        //penanganan layout & fab cardview more apps
+        linearLayoutMoreApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=arjavax")));
+            }
+        });
+
+        linearLayoutQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, QuizTebakBuah.class));
             }
         });
 
@@ -85,21 +139,26 @@ public class MainActivity extends AppCompatActivity {
         });
 
         closeMenuFab();
+
     }
 
     private void openMenuFab() {
         linearLayoutAbout.setVisibility(View.VISIBLE);
-        fabMenus.setImageResource(R.drawable.angka_1);
+        linearLayoutRate.setVisibility(View.VISIBLE);
+        linearLayoutMoreApp.setVisibility(View.VISIBLE);
+        fabMenus.setImageResource(R.drawable.ic_close_white_24dp);
         fabExpanded = true;
     }
 
     private void closeMenuFab() {
         linearLayoutAbout.setVisibility(View.INVISIBLE);
-        fabMenus.setImageResource(R.drawable.alif);
+        linearLayoutRate.setVisibility(View.INVISIBLE);
+        linearLayoutMoreApp.setVisibility(View.INVISIBLE);
+        fabMenus.setImageResource(R.drawable.ic_menu_white_24dp);
         fabExpanded = false;
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
 // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -125,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @Override
     public void onBackPressed() {
@@ -135,8 +194,7 @@ public class MainActivity extends AppCompatActivity {
                 .setCancelable(true)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //do things
-                        finish();
+                        moveTaskToBack(true);
                     }
                 })
                 .setNegativeButton("Kembali", new DialogInterface.OnClickListener() {
@@ -148,6 +206,5 @@ public class MainActivity extends AppCompatActivity {
                 });
         AlertDialog alert = builder.create();
         alert.show();
-//        super.onBackPressed();
     }
 }
