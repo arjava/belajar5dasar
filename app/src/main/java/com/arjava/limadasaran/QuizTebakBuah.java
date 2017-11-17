@@ -8,7 +8,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -405,6 +407,8 @@ public class QuizTebakBuah extends AppCompatActivity {
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(QuizTebakBuah.this);
         alertDialog.setTitle(R.string.selesai)
+                .setCancelable(false)
+                .setIcon(R.drawable.ic_check_circle_purple_300_24dp)
                 .setMessage(getResources().getString(R.string.message_finish)+" dengan Point "+ pointBenar)
                 .setNegativeButton(R.string.ke_menu, new DialogInterface.OnClickListener() {
                     @Override
@@ -441,4 +445,5 @@ public class QuizTebakBuah extends AppCompatActivity {
 
         alertDialog.show();
     }
+
 }

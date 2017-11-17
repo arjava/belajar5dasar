@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        configRelease {
+            keyAlias 'arjakey'
+            keyPassword 'Key4rjavaX'
+            storeFile file('/home/arjava/Android/arjava.jks')
+            storePassword 'Keystore4rj'
+        }
+    }
     compileSdkVersion 24
     buildToolsVersion '26.0.2'
     defaultConfig {

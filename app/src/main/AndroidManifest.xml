@@ -9,8 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:noHistory="true"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/AppTheme.NoActionBar"
@@ -87,7 +86,8 @@
         <activity android:name=".Kontak" />
         <activity android:name=".QuizTebakBuah"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:noHistory="true"></activity>
     </application>
 
 </manifest>
